@@ -7,9 +7,7 @@ class Python_SQL_Crud():
     #Initially Constructor
     def __init__(self,host,user,password,database):
         # self.host=host
-        self.user=user
-        self.password=password
-        self.database = database
+       
         self.mydb = mysql.connector.connect(
             host=host,user=user,password=password,database=database
         )
