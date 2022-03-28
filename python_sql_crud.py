@@ -36,7 +36,7 @@ class Python_SQL_Crud():
         if inserted:
             print("******Data Inserted******* ")
         self.mydb.commit()
-        self.mydb.close()
+        self.mydb.close()  
     
     #Insert Multiple Data At once 
     def inset_many_data(self,many_data):
