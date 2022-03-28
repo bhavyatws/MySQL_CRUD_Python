@@ -7,7 +7,6 @@ class Python_SQL_Crud():
     #Initially Constructor
     def __init__(self,host,user,password,database):
         # self.host=host
-       
         self.mydb = mysql.connector.connect(
             host=host,user=user,password=password,database=database
         )
@@ -17,7 +16,7 @@ class Python_SQL_Crud():
     
     #show tables
     def show_tables(self):
-        created=self.cursorObject.execute('SHOW TABLES;')
+        self.cursorObject.execute('SHOW TABLES;')
         myresult=self.cursorObject.fetchall()
         for x in myresult:
             print(x)
@@ -26,9 +25,7 @@ class Python_SQL_Crud():
     def inset_single_data(self,name,city,roll):
         sql='''INSERT INTO STUDENT(name,city,roll)
             VALUES(%s,%s,%s)'''
-        self.name=name
-        self.city=city
-        self.roll=roll
+
         val=(name,city,roll)
         inserted=self.cursorObject.execute(sql,val)
         if inserted:
@@ -40,8 +37,7 @@ class Python_SQL_Crud():
     def inset_many_data(self,many_data):
         sql='''INSERT INTO STUDENT(name,city,roll)
             VALUES(%s,%s,%s)'''
-        self.many_data=many_data
-        print(many_data)
+       
         val=(many_data)
         inserted=self.cursorObject.executemany(sql,val)
         if inserted:
@@ -56,8 +52,6 @@ class Python_SQL_Crud():
             set roll= %s
             where student_id= %s ;
             ''' 
-        self.data_to_modified=data_to_modified
-        self.student_id=student_id
         val=(data_to_modified,student_id)
         self.cursorObject.execute(sql,val)
         self.mydb.commit()
@@ -71,8 +65,8 @@ class Python_SQL_Crud():
             where student_id = %s ;
 
             '''
-        self.student_id=student_id
-        val=(id)
+        
+        val=(student_id)
         self.cursorObject.execute(sql,val)
         self.mydb.commit()
         self.mydb.close()
